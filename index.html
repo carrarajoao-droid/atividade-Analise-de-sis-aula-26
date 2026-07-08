@@ -1,1 +1,472 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade: Marketing Digital - Aula 26</title>
+    <style>
+        /* Configurações de Fundo e Layout na Tela - Variante Vermelho Cintilante */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #160608 0%, #2a0b11 50%, #420f18 100%);
+            background-attachment: fixed;
+            color: #f1f1f1;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
 
+        .container {
+            max-width: 850px;
+            width: 100%;
+        }
+
+        /* Alerta de entrega no topo */
+        .alerta-entrega {
+            background: rgba(255, 71, 87, 0.15);
+            border: 1px solid rgba(255, 71, 87, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 25px;
+            color: #ff8793;
+            font-size: 0.95rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Cabeçalho Principal */
+        .header-card {
+            background: linear-gradient(135deg, #b3102a 0%, #e91e63 100%);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(179, 16, 42, 0.3);
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .header-card h2 {
+            margin: 0;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ff9fba;
+        }
+
+        .header-card h1 {
+            margin: 10px 0;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .header-card p {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            opacity: 0.9;
+        }
+
+        /* Efeito de Transparência (Glassmorphism Vermelho) */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 71, 87, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            color: #ff4757;
+            margin-top: 0;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(255, 71, 87, 0.3);
+        }
+
+        /* Formulário de Identificação (Padrão 4 colunas) */
+        .grid-inputs {
+            display: grid;
+            grid-template-columns: 1.5fr 2fr 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-inputs { grid-template-columns: 1fr; }
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input-group label {
+            font-size: 0.85rem;
+            color: #cccccc;
+            font-weight: 600;
+        }
+
+        .input-group input {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 71, 87, 0.25);
+            border-radius: 8px;
+            padding: 12px;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: #ff4757;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 10px rgba(255, 71, 87, 0.2);
+        }
+
+        /* Questões */
+        .questao {
+            margin-bottom: 30px;
+            page-break-inside: avoid; 
+            break-inside: avoid;
+        }
+
+        .questao-titulo {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .opcoes {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .opcao-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .opcao-label:hover {
+            background: rgba(255, 71, 87, 0.04);
+            border-color: rgba(255, 71, 87, 0.3);
+        }
+
+        /* Customização do botão de rádio (Vermelho Cintilante) */
+        .opcao-label input[type="radio"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .opcao-label input[type="radio"]:checked {
+            border-color: #ff4757 !important;
+            background: rgba(255, 71, 87, 0.2) !important;
+        }
+
+        .opcao-label input[type="radio"]:checked::before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            background: #ff4757 !important;
+            border-radius: 50%;
+            display: block;
+        }
+
+        .opcao-label:has(input[type="radio"]:checked) {
+            background: rgba(255, 71, 87, 0.06) !important;
+            border-color: rgba(255, 71, 87, 0.4) !important;
+        }
+
+        /* Botão Salvar em PDF */
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        .btn-pdf {
+            background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
+            color: #ffffff;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(255, 71, 87, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-pdf:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 71, 87, 0.6);
+        }
+
+        /* REGRAS DE FORMATAÇÃO EXCLUSIVAS PARA PADRÃO A4 */
+        @page {
+            size: A4;
+            margin: 15mm 15mm 15mm 15mm;
+        }
+
+        @media print {
+            .alerta-entrega, .btn-container {
+                display: none !important;
+            }
+
+            body {
+                background: #160608 !important; /* Fixa o fundo vinho escuro */
+                padding: 0 !important;
+                margin: 0 !important;
+                width: 100%;
+            }
+
+            .container {
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+
+            .header-card {
+                padding: 20px !important;
+                margin-bottom: 15px !important;
+                border-radius: 12px !important;
+            }
+
+            .header-card h1 {
+                font-size: 1.8rem !important;
+            }
+
+            .glass-card {
+                padding: 20px !important;
+                margin-bottom: 15px !important;
+                border-radius: 12px !important;
+                background: rgba(255, 255, 255, 0.03) !important;
+                box-shadow: none !important;
+            }
+
+            .questao {
+                margin-bottom: 18px !important;
+            }
+
+            .questao-titulo {
+                font-size: 1rem !important;
+                margin-bottom: 8px !important;
+            }
+
+            .opcoes {
+                gap: 6px !important;
+            }
+
+            .opcao-label {
+                padding: 8px 12px !important;
+                border-radius: 6px !important;
+                font-size: 0.9rem !important;
+            }
+
+            .opcao-label input[type="radio"] {
+                width: 16px !important;
+                height: 16px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Alerta de Entrega -->
+    <div class="alerta-entrega">
+        📌 <strong>Para entregar no Classroom:</strong> preencha a atividade, clique em <strong>Salvar/Imprimir em PDF</strong> no final da página. Na tela de impressão, clique em <em>Mais definições</em> e ative a caixinha <strong>"Imagens em segundo plano"</strong> para salvar com o design correto!
+    </div>
+
+    <!-- Cabeçalho Principal -->
+    <div class="header-card">
+        <h2>Aula - 26</h2>
+        <h1>Tráfego Orgânico e Gatilhos Mentais</h1>
+        <p>Atividades de fixação e aplicação prática</p>
+    </div>
+
+    <!-- Identificação Escolar -->
+    <div class="glass-card">
+        <div class="section-title">📝 Identificação do Aluno</div>
+        <div class="grid-inputs">
+            <div class="input-group">
+                <label>Colégio / Escola</label>
+                <input type="text" placeholder="Nome da instituição">
+            </div>
+            <div class="input-group">
+                <label>Nome Completo</label>
+                <input type="text" placeholder="Digite seu nome completo">
+            </div>
+            <div class="input-group">
+                <label>Turma</label>
+                <input type="text" placeholder="Ex: 3º Ano A">
+            </div>
+            <div class="input-group">
+                <label>Data</label>
+                <input type="date">
+            </div>
+        </div>
+    </div>
+
+    <!-- Bloco do Questionário -->
+    <div class="glass-card">
+        <div class="section-title">❓ Questões de Multipla Escolha</div>
+
+        <!-- Questão 1 -->
+        <div class="questao">
+            <div class="questao-titulo">1) O que é tráfego orgânico?</div>
+            <div class="opcoes">
+                <label class="opcao-label"><input type="radio" name="q1"> A) Visitantes que chegam ao site através de anúncios pagos</label>
+                <label class="opcao-label"><input type="radio" name="q1"> B) Visitantes que chegam ao site através de resultados de pesquisa não pagos</label>
+                <label class="opcao-label"><input type="radio" name="q1"> C) Visitantes que chegam ao site através de links patrocinados</label>
+                <label class="opcao-label"><input type="radio" name="q1"> D) Visitantes que chegam ao site através de campanhas de e-mail</label>
+            </div>
+        </div>
+
+        <!-- Questão 2 -->
+        <div class="questao">
+            <div class="questao-titulo">2) Artigos de blog atraem visitantes principalmente porque:</div>
+            <div class="opcoes">
+                <label class="opcao-label"><input type="radio" name="q2"> A) Substituem as redes sociais</label>
+                <label class="opcao-label"><input type="radio" name="q2"> B) Respondem às perguntas que o público já está pesquisando</label>
+                <label class="opcao-label"><input type="radio" name="q2"> C) Só funcionam com anúncios pagos</label>
+                <label class="opcao-label"><input type="radio" name="q2"> D) Não precisam de atualização</label>
+            </div>
+        </div>
+
+        <!-- Questão 3 -->
+        <div class="questao">
+            <div class="questao-titulo">3) A plataforma que funciona como um "buscador visual", ideal para nichos como moda e decoração, é o:</div>
+            <div class="opcoes">
+                <label class="opcao-label"><input type="radio" name="q3"> A) Pinterest</label>
+                <label class="opcao-label"><input type="radio" name="q3"> B) Discord</label>
+                <label class="opcao-label"><input type="radio" name="q3"> C) Telegram</label>
+                <label class="opcao-label"><input type="radio" name="q3"> D) Twitch</label>
+            </div>
+        </div>
+
+        <!-- Questão 4 -->
+        <div class="questao">
+            <div class="questao-titulo">4) O aviso "Últimas unidades!" em uma loja é um exemplo do gatilho mental de:</div>
+            <div class="opcoes">
+                <label class="opcao-label"><input type="radio" name="q4"> A) Reciprocidade</label>
+                <label class="opcao-label"><input type="radio" name="q4"> B) Autoridade</label>
+                <label class="opcao-label"><input type="radio" name="q4"> C) Escassez</label>
+                <label class="opcao-label"><input type="radio" name="q4"> D) Prova social</label>
+            </div>
+        </div>
+
+        <!-- Questão 5 -->
+        <div class="questao">
+            <div class="questao-titulo">5) Mostrar avaliações e depoimentos de clientes satisfeitos ativa o gatilho mental de:</div>
+            <div class="opcoes">
+                <label class="opcao-label"><input type="radio" name="q5"> A) Prova social</label>
+                <label class="opcao-label"><input type="radio" name="q5"> B) Urgência</label>
+                <label class="opcao-label"><input type="radio" name="q5"> C) Escassez</label>
+                <label class="opcao-label"><input type="radio" name="q5"> D) Curiosidade</label>
+            </div>
+        </div>
+
+        <!-- Questão 6 -->
+        <div class="questao">
+            <div class="questao-titulo">6) Fazem parte das práticas de SEO:</div>
+            <div class="opcoes">
+                <label class="opcao-label"><input type="radio" name="q6"> A) Comprar seguidores para o perfil da marca</label>
+                <label class="opcao-label"><input type="radio" name="q6"> B) Palavras-chave relevantes, títulos atraentes e otimização de imagens</label>
+                <label class="opcao-label"><input type="radio" name="q6"> C) Enviar e-mails em massa sem autorização</label>
+                <label class="opcao-label"><input type="radio" name="q6"> D) Pagar por cliques no Google</label>
+            </div>
+        </div>
+
+        <!-- Questão 7 -->
+        <div class="questao">
+            <div class="questao-titulo">7) Publicar conteúdo com regularidade ajuda o site porque:</div>
+            <div class="opcoes">
+                <label class="opcao-label"><input type="radio" name="q7"> A) Dispensa o uso de palavras-chave</label>
+                <label class="opcao-label"><input type="radio" name="q7"> B) Mantem o público engajado e melhora a classificação nos motores de busca</label>
+                <label class="opcao-label"><input type="radio" name="q7"> C) Elimina a concorrência</label>
+                <label class="opcao-label"><input type="radio" name="q7"> D) Garante o primeiro lugar no Google para sempre</label>
+            </div>
+        </div>
+
+        <!-- Questão 8 -->
+        <div class="questao">
+            <div class="questao-titulo">8) Comunidades como Reddit, Discord e grupos de nicho geram um tráfego orgânico valioso porque:</div>
+            <div class="opcoes">
+                <label class="opcao-label"><input type="radio" name="q8"> A) Cobram por cada clique</label>
+                <label class="opcao-label"><input type="radio" name="q8"> B) Reúnem um público fiel e interessado, que compartilha o conteúdo</label>
+                <label class="opcao-label"><input type="radio" name="q8"> C) Substituem o site da empresa</label>
+                <label class="opcao-label"><input type="radio" name="q8"> D) Só aceitam anúncios pagos</label>
+            </div>
+        </div>
+
+        <!-- Questão 9 -->
+        <div class="questao">
+            <div class="questao-titulo">9) Um título que promete algo que o conteúdo não entrega (clickbait) faz o site:</div>
+            <div class="opcoes">
+                <label class="opcao-label"><input type="radio" name="q9"> A) Ganhar autoridade no Google</label>
+                <label class="opcao-label"><input type="radio" name="q9"> B) Fidelizar o público</label>
+                <label class="opcao-label"><input type="radio" name="q9"> C) Ganhar um clique hoje e perder a confiança do público para sempre</label>
+                <label class="opcao-label"><input type="radio" name="q9"> D) Melhorar o SEO automaticamente</label>
+            </div>
+        </div>
+
+        <!-- Questão 10 -->
+        <div class="questao">
+            <div class="questao-titulo">10) A ferramenta gratuita do Google que monitora como o site aparece nos resultados de pesquisa é o:</div>
+            <div class="opcoes">
+                <label class="opcao-label"><input type="radio" name="q10"> A) Google Search Console</label>
+                <label class="opcao-label"><input type="radio" name="q10"> B) Google Fotos</label>
+                <label class="opcao-label"><input type="radio" name="q10"> C) Yoast SEO</label>
+                <label class="opcao-label"><input type="radio" name="q10"> D) AnswerThePublic</label>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Botão de Impressão -->
+    <div class="btn-container">
+        <button class="btn-pdf" onclick="window.print()">🖨️ Salvar / Imprimir em PDF</button>
+    </div>
+
+</div>
+
+</body>
+</html>
